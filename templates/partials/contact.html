@@ -1,0 +1,65 @@
+<div class="accordion" id="contact-accord">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#my_contact"
+        aria-expanded="false"
+        aria-controls="my_contact"
+      >
+        {{content["contact_accordion"]}}
+      </button>
+    </h2>
+    <div
+      id="my_contact"
+      class="accordion-collapse collapse"
+      data-bs-parent="#contact-accord"
+    >
+      <div class="accordion-body">
+        <div class="container mt-2">
+          <form
+            action="{{ url_for('send_mail') }}"
+            method="post"
+            id="contact-form"
+          >
+          {{ email_form.csrf_token() }}
+          <div class="mb-3">
+            {{ email_form.contact_name.label(class="form-label") }}
+            {{ email_form.contact_name(class="form-control") }}
+            {% for error in email_form.contact_name.errors %}
+            {{ error }}
+          {% endfor %}
+          </div>
+            <div class="mb-3">
+              {{ email_form.contact_email.label(class="form-label") }}
+              {{ email_form.contact_email(class="form-control") }}
+            </div>
+            <div class="mb-3">
+              {{ email_form.subject.label(class="form-label") }}
+              {{ email_form.subject(class="form-control") }}
+            </div>            
+            <div class="mb-3">
+              {{ email_form.message.label(class="form-label") }}
+              {{ email_form.message(class="form-control") }}
+            </div>
+            <div class="d-grid justify-content-center mt-3">
+              <div class="row">
+            <div>
+              {{ email_form.recaptcha}}
+            </div>
+          </div>
+          <div class="row mt-2 col-12 cold-md-6 mx-auto">
+            <div class="container">
+              {{ email_form.submit(class="btn btn-secondary w-100") }}
+          </div>
+          </div>
+          </div>
+          </form>
+        </div>
+        <hr />
+      </div>
+    </div>
+  </div>
+</div>

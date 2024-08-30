@@ -1,0 +1,147 @@
+<div class="accordion" id="projects-accord">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#my_projecs"
+        aria-expanded="false"
+        aria-controls="my_projecs"
+      >
+        {{content['projects_accordion']}}
+      </button>
+    </h2>
+    <div
+      id="my_projecs"
+      class="accordion-collapse collapse"
+      data-bs-parent="#projects-accord"
+    >
+      <div class="accordion-body">
+        <div class="row" id="project-grid">
+          {% for project, projects_info in content["projects_list"].items() %}
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-3 project-item mx-auto">
+            <div class="card project-card">
+              <img
+                src="{{ url_for('static', filename='img/'+ projects_info['img']) }}"
+                class="card-img-top"
+                alt="image for {{ project.title }}"
+                width="100%"
+                height="180"
+                loading="lazy"
+                data-bs-toggle="modal"
+                data-bs-target="#projectModal{{ project }}"
+              />
+              <div class="card-body text-center">
+                <h5 class="card-title">
+                  <strong>{{ projects_info['title'] }} </strong>
+                </h5>
+                <h5>{{ projects_info['type']}}</h5>
+                <div class="language-bar">
+                  {% for language, percentage in
+                  projects_info['languages'].items() %}
+                  <div
+                    class="language-segment"
+                    style="width: {{ percentage }}%; background-color: {{ language_colors[language] }};"
+                    title="{{ language }} : {{ percentage }}%"
+                  ></div>
+                  {% endfor %}
+                </div>
+                <div class="language-details">
+                  {% for language, percentage in
+                  projects_info['languages'].items() %}
+                  <span class="language-item">
+                    <span
+                      class="language-color"
+                      style="background-color: {{ language_colors[language] }};"
+                    ></span>
+                    {{ language }}: {{ percentage }}%
+                  </span>
+                  {% endfor %}
+                </div>
+                <div class="d-flex justify-content-center mt-3">
+                  <button
+                    class="btn btn-secondary btn-sm"
+                    data-bs-toggle="modal"
+                    data-bs-target="#projectModal{{ project }}"
+                    aria-label="View details for {{ project }}"
+                  >
+                    {{content["projects_info"]["details_btn"]}}
+                  </button>
+                </div>
+                <div class="d-flex justify-content-center mt-3">
+                  <a
+                    href="{{ projects_info['link'] }}"
+                    class="btn btn-secondary btn-sm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >{{content["projects_info"]["repository_btn"]}}</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% for project, projects_details in content["projects_list"].items() %}
+  <div
+    class="modal fade"
+    id="projectModal{{ project }}"
+    tabindex="-1"
+    aria-labelledby="projectModalLabel{{ project }}"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5
+            class="modal-title w-100 text-center"
+            id="projectModalLabel{{ project }}"
+          >
+            <strong>{{ projects_details["title"]}}</strong>
+            - {{ projects_details['type']}}
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body text-center">
+          <img
+            src="{{ url_for('static', filename='img/'+ projects_details['img']) }}"
+            class="img-fluid mb-3"
+            alt="{{ project }}"
+          />
+          <h6>{{content["projects_info"]["relevant_tecs"]}}</h6>
+          <p class="fst-italic">{% for tec in projects_details["tecs"]%} 
+            {{ tec }} {%if not loop.last %} | {%endif%}
+            {%endfor%}</p>
+          <p>{{ projects_details["description"] }}</p>
+        </div>
+        <div class="modal-footer">
+          <a
+            href="{{ projects_details['link'] }}"
+            class="btn btn-secondary"
+            target="_blank"
+            rel="noopener noreferrer"
+            >{{content["projects_info"]["repository_btn"]}}</a
+          >
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            {{content["projects_info"]["close_btn"]}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>

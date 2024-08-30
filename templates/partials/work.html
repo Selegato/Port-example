@@ -1,0 +1,48 @@
+<div class="accordion" id="work-accord">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#my_work"
+        aria-expanded="false"
+        aria-controls="my_work"
+      >
+        {{ content['work_accordion'] }}
+      </button>
+    </h2>
+    <div
+      id="my_work"
+      class="accordion-collapse collapse"
+      data-bs-parent="#work-accord"
+    >
+      <div class="accordion-body">
+        {% for company, details in content['work_history'].items() %}
+        <div class="container">
+          <p class="text-center mb-1">
+            <strong
+              ><a href="{{ details['link']}}" target="_blank"
+                >{{details['name']}}</a
+              >
+            </strong>
+          </p>
+          <div class="d-flex justify-content-between">
+            <p class="fst-italic mb-0">{{ details['role']}}</p>
+            <p class="text-end fst-italic mb-0">{{ details['duration']}}</p>
+          </div>
+          <div class="mt-2">
+            <ul>
+              {%for responsibility in details['responsibilities']%}
+              <li>{{ responsibility }}</li>
+              {%endfor%}
+            </ul>
+          </div>
+        </div>
+        {% if not loop.last %}
+        <hr />
+        {% endif %} {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

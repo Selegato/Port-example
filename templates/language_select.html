@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'partials/_head.html'%}
+</head>
+<body>
+    <div class="container flag-container">
+        <div class="row">
+            <div class="col text-center">
+                <a href="{{ url_for('set_language', lang='en') }}" class="flag">
+                    <img src="{{url_for('static',filename='img/us.png')}}" alt="English">
+                    <p class="p-language">English</p>
+                </a>
+            </div>
+            <div class="col text-center">
+                <a href="{{ url_for('set_language', lang='pt-br') }}" class="flag">
+                    <img src="{{url_for('static',filename='img/br.png')}}" alt="Português">
+                    <p class="p-language">Português</p>
+                </a>
+            </div>
+            <div class="col text-center">
+                <a href="{{ url_for('set_language', lang='uk') }}" class="flag">
+                    <img src="{{url_for('static',filename='img/ua.png')}}" alt="Українська">
+                    <p class="p-language">Українська</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

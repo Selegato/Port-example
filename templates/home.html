@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include 'partials/_head.html'%}
+  </head>
+  <body>
+    <main>
+      <!-- Flash messages -->
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+      <div class="container mt-3">
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %}
+
+      <div class="container-fluid">
+        <!-- Hero Section -->
+        <section id="hero">
+          <div class="container col-xxl-8 px-4 mb-3">
+            {% include 'partials/hero.html' %}
+          </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+          <div class="container-fluid col-xxl-8 px-4 mb-3">
+            {% include 'partials/projects.html' %}
+          </div>
+        </section>
+
+        <!-- Work History Section -->
+        <section id="work">
+          <div class="container-fluid col-xxl-8 px-4 mb-3">
+            {% include 'partials/work.html' %}
+          </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education">
+          <div class="container-fluid col-xxl-8 px-4 mb-3">
+            {% include 'partials/education.html' %}
+          </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+          <div class="container-fluid col-xxl-8 px-4 mb-3">
+            {% include 'partials/contact.html' %}
+          </div>
+        </section>
+
+        <!-- _footer Section -->
+        <div class="container-fluid">{% include 'partials/_footer.html' %}</div>
+      </div>
+    </main>
+    {%include 'partials/_scripts.html'%}
+  </body>
+</html>

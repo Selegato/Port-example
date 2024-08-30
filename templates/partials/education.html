@@ -1,0 +1,38 @@
+<div class="accordion" id="education-accord">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#my_education"
+        aria-expanded="false"
+        aria-controls="my_education"
+      >
+        {{content['education_accordion']}}
+      </button>
+    </h2>
+    <div
+      id="my_education"
+      class="accordion-collapse collapse"
+      data-bs-parent="#education-accord"
+    >
+      <div class="accordion-body">
+        {% for education, details in content['education_history'].items() %}
+        <div class="container">
+          <p class="text-center mb-1">
+            <strong
+              ><a href="{{details['link']}}" target="_blank"
+                >{{details['name']}}</a
+              ></strong
+            >
+            - {{details['formation']}}
+          </p>
+        </div>
+        {% if not loop.last %}
+        <hr />
+        {%endif%} {%endfor%}
+      </div>
+    </div>
+  </div>
+</div>

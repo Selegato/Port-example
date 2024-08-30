@@ -1,0 +1,31 @@
+<footer class="d-flex align-items-center py-3 mt-4 mb-0 border-top">
+  <div class="d-flex justify-content-between w-100">
+    <span class="mb-3 mb-md-0">© 2024 developed by: Paulo Selegato</span>
+    <div class="d-flex justify-content-center flex-grow-1">
+      <a href="{{ url_for('set_language', lang='en') }}">
+        <img
+          src="{{ url_for('static', filename='img/us.png') }}"
+          alt="English Flag"
+          class="footer-flag {{ 'selected' if lang == 'en' else '' }}"
+        />
+      </a>
+      <a href="{{ url_for('set_language', lang='pt-br') }}">
+        <img
+          src="{{ url_for('static', filename='img/br.png') }}"
+          alt="Brazilian Flag"
+          class="footer-flag {{ 'selected' if lang == 'pt-br' else '' }}"
+        />
+      </a>
+      <a href="{{ url_for('set_language', lang='uk') }}">
+        <img
+          src="{{ url_for('static', filename='img/ua.png') }}"
+          alt="Ukrainian Flag"
+          class="footer-flag {{ 'selected' if lang == 'uk' else '' }}"
+        />
+      </a>
+    </div>
+    <span class="mb-3 mb-md-0 d-flex align-items-center">
+      <span class="me-2">Слава Україні!</span>
+    </span>
+  </div>
+</footer>
